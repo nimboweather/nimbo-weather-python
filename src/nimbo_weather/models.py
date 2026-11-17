@@ -129,7 +129,6 @@ class Nowcast:
     attribution: list[str]
     raw: dict[str, Any] = field(repr=False, compare=False)
     rate_limit: RateLimit | None = field(default=None, compare=False)
-    data_credits: str | None = None
 
     @property
     def has_radar(self) -> bool:
@@ -155,7 +154,6 @@ class Nowcast:
             ],
             grid=d.get("grid", ""),
             attribution=list(d.get("attribution") or []),
-            data_credits=d.get("data_credits"),
             raw=d,
             rate_limit=rate_limit,
         )
@@ -255,7 +253,6 @@ class TilesIndex:
     attribution: list[str]
     raw: dict[str, Any] = field(repr=False, compare=False)
     rate_limit: RateLimit | None = field(default=None, compare=False)
-    data_credits: str | None = None
 
     @classmethod
     def from_dict(cls, d: dict[str, Any], rate_limit: RateLimit | None = None) -> TilesIndex:
@@ -277,7 +274,6 @@ class TilesIndex:
             latest=d.get("latest", ""),
             grid=d.get("grid", ""),
             attribution=list(d.get("attribution") or []),
-            data_credits=d.get("data_credits"),
             raw=d,
             rate_limit=rate_limit,
         )

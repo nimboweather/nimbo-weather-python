@@ -59,7 +59,7 @@ Answers are dataclasses; the full JSON is in `.raw`. `Nowcast.rate_limit` carrie
 - `coverage == "no_radar"`: the point is in the forecast area but no radar sees it. `summary` and every value are `None`.
 - `stale`: the forecast is late (more than 25 min old). `notice` explains an outage.
 - `attribution`: on the Free plan, show it with the data ("Rain forecast: Nimbo Weather" and its link). Optional on
-  paid plans. `data_credits` links to the credits of the data the forecast is made from.
+  paid plans.
 
 ## Errors
 
