@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nimbo-weather"
+dynamic = ["version"]
+description = "Client for the Nimbo Weather rain nowcast API: minute-by-minute rain for the next 3 hours in Europe."
+readme = "README.md"
+authors = [{ name = "Nimbo Weather", email = "hello@nimboweather.com" }]
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = ["httpx>=0.25,<1"]
+keywords = ["weather", "rain", "nowcast", "precipitation", "radar", "forecast", "api", "europe"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "Typing :: Typed",
+    "Framework :: AsyncIO",
+]
+
+[project.urls]
+Homepage = "https://nimboweather.com"
+Documentation = "https://nimboweather.com/guides/rain-forecast-python"
+Source = "https://github.com/nimboweather/nimbo-weather-python"
+Issues = "https://github.com/nimboweather/nimbo-weather-python/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "respx>=0.21", "mypy>=1.10", "ruff>=0.5"]
+
+[tool.hatch.version]
+path = "src/nimbo_weather/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nimbo_weather"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/nimbo_weather", "tests", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]  # the formatter wraps code; long comments are fine
+
+[tool.mypy]
+strict = true
+python_version = "3.10"
