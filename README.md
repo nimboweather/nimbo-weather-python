@@ -28,7 +28,7 @@ if forecast.summary:
     print(forecast.summary.text)  # "Light rain starting in 25 min, for about 40 min"
 for step in forecast.minutely[:6]:
     print(step.time, step.precip_mm_h, step.precip_probability)
-print(forecast.attribution)  # show this with the data
+print(forecast.attribution)  # show this with the data (Free plan)
 ```
 
 Async:
@@ -58,8 +58,8 @@ Answers are dataclasses; the full JSON is in `.raw`. `Nowcast.rate_limit` carrie
 
 - `coverage == "no_radar"`: the point is in the forecast area but no radar sees it. `summary` and every value are `None`.
 - `stale`: the forecast is late (more than 25 min old). `notice` explains an outage.
-- `attribution`: show it with the data, as the data licence requires. On the Free plan also show
-  "Rain forecast: Nimbo Weather" with a link to nimboweather.com.
+- `attribution`: on the Free plan, show it with the data ("Rain forecast: Nimbo Weather" and its link). Optional on
+  paid plans. `data_credits` links to the credits of the data the forecast is made from.
 
 ## Errors
 

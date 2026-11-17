@@ -52,7 +52,7 @@ class _Base:
         if not keyed:
             return dict(self._headers)
         if not self.api_key:
-            raise NimboError("No API key: pass api_key= or set NIMBO_API_KEY.", code="api_key_required")
+            raise NimboError("No API key: pass api_key= or set NIMBO_API_KEY (or NIMBO_KEY).", code="api_key_required")
         return {**self._headers, "X-API-Key": self.api_key}
 
     def _retry_wait(self, attempt: int, response: httpx.Response | None) -> float | None:
@@ -91,7 +91,7 @@ class _Base:
         for a single current frame; animate with ``tiles_index()`` frames instead). It carries the key in the query,
         as tiles require: use it server-side or in an app you control, not in a public web page."""
         if not self.api_key:
-            raise NimboError("No API key: pass api_key= or set NIMBO_API_KEY.", code="api_key_required")
+            raise NimboError("No API key: pass api_key= or set NIMBO_API_KEY (or NIMBO_KEY).", code="api_key_required")
         query = {"key": self.api_key, **({"palette": palette} if palette else {})}
         return f"{self.base_url}/tiles/{layer}/latest/{offset_min}/{z}/{x}/{y}.webp?{urlencode(query)}"
 
